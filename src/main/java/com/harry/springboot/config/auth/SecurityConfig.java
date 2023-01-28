@@ -1,4 +1,4 @@
-package config.auth;
+package com.harry.springboot.config.auth;
 
 import com.harry.springboot.domain.user.Role;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile", "favicon.ico").permitAll()
                 .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated()
                 .and()
@@ -26,4 +26,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
     }
+
 }
